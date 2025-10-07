@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+    
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/pb_waiting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:visibility="invisible"
+                        app:indicatorColor="@color/color_fab_active" />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_spacing_dp8"
+                        app:tabIndicatorFullWidth="false"
+                        app:tabMode="scrollable"
+                        app:tabTextAppearance="@style/TabLayoutTextStyle" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:translationY="350dp"
+                        android:layout_weight="1"
+                        android:nextFocusRight="@+id/fab"
+                        android:scrollbars="vertical" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_status_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="16dp"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/tvUserStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="وضعیت کاربر"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/tvTrafficSummary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ترافیک باقی‌مانده"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvDaysSummary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="روزهای باقی‌مانده"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:elevation="500dp"
+                    android:layout_marginTop="8dp"
+                    android:nextFocusLeft="@+id/layout_test"
+                    app:layout_anchor="@id/tvDaysSummary"
+                    android:translationY="50dp"
+                    app:layout_anchorGravity="bottom|center_horizontal"
+                    app:layout_dodgeInsetEdges="bottom"
+                    android:src="@drawable/ic_play_24dp" />
+
+                <LinearLayout
+                    android:id="@+id/layout_test"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_height_dp64"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    app:layout_anchor="@id/fab"
+                    app:layout_anchorGravity="bottom|center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:elevation="30dp"
+                    android:translationY="50dp"
+                    android:translationZ="50dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_test_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:maxLines="2"
+                        android:minLines="1"
+                        android:elevation="50dp"
+                        android:translationZ="50dp"
+                        android:text="@string/connection_test_pending"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/bg_glass_round"
+                        android:padding="12dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                </LinearLayout>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:itemIconTint="@color/colorAccent"
+        app:menu="@menu/menu_drawer">
+
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>
